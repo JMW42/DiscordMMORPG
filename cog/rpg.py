@@ -1,3 +1,11 @@
+"""  
+# AUTHOR: JMW
+# CREATION DATE: 04.10.2024
+# LAST UPDATE: 11.10.2024
+The RPG cog is responsible for the interaction between players and the game.
+"""
+
+
 import discord
 from discord.ext import commands
 
@@ -128,7 +136,7 @@ class RPG(commands.Cog):
 
     @commands.command(name="inspect")
     @commands.check(is_loged_in)
-    async def cmd_inspect(self, ctx, type:str, num:int):
+    async def cmd_inspect(self, ctx, type:str, num:int, *args):
         """ inspects an entity from the secified group (object, gate, character, inventory) in your current stage or inventory"""
         char = self.bot.rpgworld.playercharacters[ctx.author.id]
         
@@ -147,14 +155,13 @@ class RPG(commands.Cog):
         if num < len(arr) and num >= 0:
             obj = arr[num]
             
-            
             embed = discord.Embed(title=f"Inspect: {obj.name}", description=obj.description)
 
             # type:
-            embed.add_field(name="Type:", value=obj.__class__.__name__, inline=True)
+            embed.add_field(name="Type:", value=obj.__class__.__name__, inline=False)
             
             # stage:
-            embed.add_field(name="Stage:", value=obj.stage.name, inline=True)
+            #embed.add_field(name="Stage:", value=obj.stage.name, inline=True)
 
             # response:
             if hasattr(obj, "response"):
@@ -164,6 +171,8 @@ class RPG(commands.Cog):
                 embed.add_field(name="Dialoge Options:", value=text, inline=False)
 
 
+            #inspect(self, ctx, author, *args)
+            await obj.inspect(ctx, char, *args)
             await ctx.send(embed=embed)
         else:
             await ctx.send(f"Pls enter a valid object id and type!")
@@ -190,8 +199,7 @@ class RPG(commands.Cog):
 
         if num < len(char.stage.objects) and num >= 0:
             obj = char.stage.objects[num]
-            
-            
+            await ctx.send(f"_{char.name}_ interacts with _{obj.name}_")
             await obj.interact(ctx, char, *args)
         else:
             await ctx.send(f"Pls enter a valid object id and type!")

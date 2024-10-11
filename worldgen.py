@@ -10,6 +10,7 @@ from rpg.rpgstage import RPGStage as RPGStage
 from rpg.rpgstageobject import RPGStageObject as RPGStageObject
 from rpg.rpgstageconnector import RPGStageConnector as RPGStageConnector
 from rpg.rpgdialogenpc import RPGDialogeNPC as RPGDialogeNPC
+from rpg.rpgobjectitemdispenser import RPGStageObjectItemDispenser as RPGStageObjectItemDispenser
 
 from rpg.rpgloader import *
 
@@ -25,7 +26,7 @@ world.spawn_stage = stage_tavern_backyard
 
 loadRPGStageObject("assets/object_wooden_crates.yaml", stage_tavern_backyard)
 loadRPGStageObject("assets/object_garbage_pile.yaml", stage_tavern_backyard)
-#RPGDialogeNPC("npc_lono_old_man", "Old Man (Tutorial)", "A really old man. He looks like he can tell you storries of his life and how this game works.", stage_tavern_backyard, {"hello": "Hello Adventurer"})
+RPGStageObjectItemDispenser("object_disp_testitem", "Create of Testitems", "This create supplies you with test items", stage_tavern_backyard, "assets/items/item_testitem.yaml")
 loadRPGDialogeNPC("assets/dnpc_lono_old_man.yaml", stage=stage_tavern_backyard)
 
 

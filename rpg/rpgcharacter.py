@@ -1,7 +1,7 @@
 """  
 # AUTHOR: JMW
 # CREATION DATE: 04.10.2024
-# LAST UPDATE: 04.10.2024
+# LAST UPDATE: 11.10.2024
 The RPGCharacter class is the base class for all further living beeings inside the RPG game.
 """
 
@@ -17,7 +17,11 @@ class RPGCharacter (RPGEntity):
 
         if not stage is None:
             stage.add_character(self)
-        
+    
+    
+    async def inspect(self, ctx, author, *args):
+        pass
+
 
     async def character_log(self, msg):
         print(f'CLOG <{self.name}>: {msg}')
@@ -25,7 +29,7 @@ class RPGCharacter (RPGEntity):
     
     async def add_item(self, item):
         self.inventory.append(item)
-        await self.character_log(f"recieves item _{item.name}_")
+        await self.character_log(f"_{self.name}_ recieves item: _{item.name}_")
     
 
     async def recieve_message(self, author, msg:str):

@@ -1,7 +1,7 @@
 """  
 # AUTHOR: JMW
 # CREATION DATE: 04.10.2024
-# LAST UPDATE: 04.10.2024
+# LAST UPDATE: 11.10.2024
 The RPGItem class is the base class for all Items inside the RPG game that can be stired in inventories or eqiped.
 """
 
@@ -15,7 +15,11 @@ class RPGItem(RPGEntity):
         super().__init__(tag, name, description)
     
 
-    def use_item(self, char):
+    async def inspect(self, ctx, author, *args):
+        pass
+    
+
+    async def use(self, char):
         print(f"using {self.name} by {char.name}")
     
 

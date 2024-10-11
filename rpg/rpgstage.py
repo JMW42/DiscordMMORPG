@@ -1,7 +1,7 @@
 """  
 # AUTHOR: JMW
 # CREATION DATE: 04.10.2024
-# LAST UPDATE: 04.10.2024
+# LAST UPDATE: 11.10.2024
 The RPGStage class is the base class for all game rooms/levels. Characters and objects are living in stages, gates allow to connect them via traveling.
 """
 

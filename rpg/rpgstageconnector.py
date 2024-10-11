@@ -1,3 +1,10 @@
+"""  
+# AUTHOR: JMW
+# CREATION DATE: 04.10.2024
+# LAST UPDATE: 11.10.2024
+The RPGStageConnector allows characters to travel between stages.
+"""
+
 from rpg import rpgcharacter as rpgcharacter
 from rpg import rpgstage as rpgstage
 from rpg.rpgentity import RPGEntity as RPGEntity
@@ -11,3 +18,6 @@ class RPGStageConnector(RPGEntity):
 
         self.stage1.connectors.append(self)
         self.stage2.connectors.append(self)
+    
+    async def inspect(self, ctx, author, *args):
+        pass

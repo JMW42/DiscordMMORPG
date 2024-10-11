@@ -1,7 +1,7 @@
 """  
 # AUTHOR: JMW
 # CREATION DATE: 04.10.2024
-# LAST UPDATE: 04.10.2024
+# LAST UPDATE: 11.10.2024
 The RPGStageObject class is the base class for all non living objects that are located in a stage that are no RPGGates.
 """
 
@@ -17,7 +17,7 @@ class RPGStageObject(RPGEntity):
             stage.add_object(self)
 
 
-    def inspect(self, author, *args):
+    async def inspect(self, ctx, author, *args):
         pass
 
 

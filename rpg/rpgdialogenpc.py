@@ -1,7 +1,7 @@
 """  
 # AUTHOR: JMW
 # CREATION DATE: 04.10.2024
-# LAST UPDATE: 04.10.2024
+# LAST UPDATE: 11.10.2024
 The RPGNonPlayerCharacter class is a NPC class that allows to create a character that is not controlled by a player and has the ability to talk.
 """
 

@@ -18,4 +18,4 @@ class RPGItemKey(RPGItem):
     def use_item(self, char):
         print(f"using {self.name} by {char.name}")
 
-
+    

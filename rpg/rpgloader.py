@@ -1,7 +1,7 @@
 """  
 # AUTHOR: JMW
 # CREATION DATE: 08.10.2024
-# LAST UPDATE: 08.10.2024
+# LAST UPDATE: 11.10.2024
 This files gives several usefull files for handling and loading rpg class objects.
 """
 
@@ -10,6 +10,7 @@ from rpg.rpgentity import RPGEntity as RPGEntity
 from rpg.rpgstage import RPGStage as RPGStage
 from rpg.rpgstageconnector import RPGStageConnector as RPGStateConnector
 from rpg.rpgdialogenpc import RPGDialogeNPC as RPGDialogeNPC
+from rpg.rpgitem import RPGItem as RPGItem
 
 import yaml
 
@@ -59,5 +60,20 @@ def loadRPGDialogeNPC(filepath, stage=None):
         try:
             config = yaml.safe_load(stream)
             return RPGDialogeNPC(config["tag"], config["name"], config["description"], stage, response=config["response"])
+        except yaml.YAMLError as exc:
+            print(exc)
+
+def loadRPGItem(filepath, stage=None):
+    with open(filepath) as stream:
+        try:
+            config = yaml.safe_load(stream)
+            itype = filepath.split("_")[0]
+
+            if itype == "item":
+                # tag:str, name:str, description:str
+                return RPGItem(config["tag"], config["name"], config["description"])
+            else:
+                return RPGItem(config["tag"], config["name"], config["description"])
+                print(f"ERROR LOADING ITEM: {filepath}")
         except yaml.YAMLError as exc:
             print(exc)
