@@ -13,7 +13,7 @@ from discord.ext import commands
 from rpg import rpgcharacter as rpgcharacter
 from rpg import rpgplayercharacter as pcharacter
 from rpg import rpgstage as rpgstage
-from rpg import rpgstageconnector as rpgstageconnector
+from rpg import rpgstageconnector as rpgstageconnectorgit 
 
 
 async def is_loged_in(ctx):
