@@ -1,0 +1,8 @@
+tag: dnpc_lono_old_man.yaml
+name: Old Man (Tutorial)
+description: A really old man. He looks like he can tell you storries of his life and how this game works.
+response:
+  Who are you?: I am and old man. A former adventurer. I strived the countryside and saved villages, lords and even once the king. That this is a long time ago.
+  Tutorial: You play this game within a chat messanger applicatio. The app is used as console. There is a "help" command for more information. 
+  Where I am?: You are in Lono, a small city in the district of riverside. A part of the northern republic. Manny of the legendary stories told on fireplaces originate from here.
+  What is the meaning of Life ?: Of course it is 42!
