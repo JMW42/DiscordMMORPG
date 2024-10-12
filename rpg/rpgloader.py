@@ -1,7 +1,7 @@
 """  
 # AUTHOR: JMW
 # CREATION DATE: 08.10.2024
-# LAST UPDATE: 11.10.2024
+# LAST UPDATE: 12.10.2024
 This files gives several usefull files for handling and loading rpg class objects.
 """
 
@@ -59,7 +59,7 @@ def loadRPGDialogeNPC(filepath, stage=None):
     with open(filepath) as stream:
         try:
             config = yaml.safe_load(stream)
-            return RPGDialogeNPC(config["tag"], config["name"], config["description"], stage, response=config["response"])
+            return RPGDialogeNPC(config["tag"], config["name"], config["description"], stage, dialoge=config["dialoge"])
         except yaml.YAMLError as exc:
             print(exc)
 

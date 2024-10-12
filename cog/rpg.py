@@ -1,7 +1,7 @@
 """  
 # AUTHOR: JMW
 # CREATION DATE: 04.10.2024
-# LAST UPDATE: 11.10.2024
+# LAST UPDATE: 12.10.2024
 The RPG cog is responsible for the interaction between players and the game.
 """
 
@@ -163,10 +163,10 @@ class RPG(commands.Cog):
             # stage:
             #embed.add_field(name="Stage:", value=obj.stage.name, inline=True)
 
-            # response:
-            if hasattr(obj, "response"):
+            # dialoge:
+            if hasattr(obj, "dialoge"):
                 text = ""
-                for msg in obj.response:
+                for msg in obj.dialoge:
                     text += f" - _{msg}_ \n"
                 embed.add_field(name="Dialoge Options:", value=text, inline=False)
 
