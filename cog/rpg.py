@@ -111,25 +111,16 @@ class RPG(commands.Cog):
 
     @commands.command(name="travel")
     @commands.check(is_loged_in)
-    async def cmd_travel(self, ctx, num:int):
+    async def cmd_travel(self, ctx, num:int, *args):
         """ allows a character to use a gate in his current stage and travel"""
         char = self.bot.rpgworld.playercharacters[ctx.author.id]
 
         if num < len(char.stage.connectors):
+
             stage_old = char.stage
             g = stage_old.connectors[num]
-        
-            if stage_old == g.stage1:
-                stage_new = g.stage2
-            else:
-                stage_new = g.stage1
-            
-            msg = f"traveling to new stage: {stage_new.name}"
-            await ctx.send(msg)
+            await g.travel(ctx, char, *args)
 
-
-            stage_old.remove_character(char)
-            stage_new.add_character(char)
         else:
             await ctx.send(f"Pls enter a valid gate id!")
 
@@ -187,7 +178,7 @@ class RPG(commands.Cog):
 
         await ctx.send(f'{char.name} says: _"{msg}"_')
 
-        await char.stage.msg_to_characters(char, msg)
+        await char.stage.sendMessageToAllCharacters(char, msg)
         
 
     @commands.command(name="interact")

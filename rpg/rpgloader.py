@@ -16,6 +16,7 @@ import yaml
 
 
 def loadRPGEntity(filepath=""):
+    """ returns a RPGEntity instance with the properties specified in the given file by filepath. """
     with open(filepath) as stream:
         try:
             config = yaml.safe_load(stream)
@@ -26,6 +27,7 @@ def loadRPGEntity(filepath=""):
 
 
 def loadRPGStage(filepath, world=None):
+    """ returns a RPGStage instance with the properties specified in the given file by filepath. """
     #RPGStage("stage_lono_spawn", "Tavern Backyard", "spawn stage description", world)
     with open(filepath) as stream:
         try:
@@ -36,6 +38,7 @@ def loadRPGStage(filepath, world=None):
 
 
 def loadRPGStageObject(filepath, stage=None):
+    """ returns a RPGStageObject instance with the properties specified in the given file by filepath. """
     #RPGStageObject("object_garbage_pile", "Pile of Garbage", "A pile of garbage someone left here.", stage_tavern_backyard)
     with open(filepath) as stream:
         try:
@@ -46,6 +49,7 @@ def loadRPGStageObject(filepath, stage=None):
 
 
 def loadRPGStateConnector(filepath, stage1=None, stage2=None):
+    """ returns a RPGStageConnector instance with the properties specified in the given file by filepath. """
     with open(filepath) as stream:
         try:
             config = yaml.safe_load(stream)
@@ -56,6 +60,7 @@ def loadRPGStateConnector(filepath, stage1=None, stage2=None):
 
 
 def loadRPGDialogeNPC(filepath, stage=None):
+    """ returns a RPGDialogeNPC instance with the properties specified in the given file by filepath. """
     with open(filepath) as stream:
         try:
             config = yaml.safe_load(stream)
@@ -63,7 +68,9 @@ def loadRPGDialogeNPC(filepath, stage=None):
         except yaml.YAMLError as exc:
             print(exc)
 
+
 def loadRPGItem(filepath, stage=None):
+    """ returns a RPGItem instance with the properties specified in the given file by filepath. """
     with open(filepath) as stream:
         try:
             config = yaml.safe_load(stream)

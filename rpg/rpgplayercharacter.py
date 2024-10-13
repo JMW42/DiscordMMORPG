@@ -1,7 +1,7 @@
 """  
 # AUTHOR: JMW
 # CREATION DATE: 04.10.2024
-# LAST UPDATE: 12.10.2024
+# LAST UPDATE: 13.10.2024
 The RPGPlayerCharacter class used for player characters.
 """
 
@@ -17,14 +17,16 @@ class RPGPlayerCharacter(RPGCharacter):
         self.player = player
     
 
-    async def character_log(self, msg):
+    async def log(self, msg):
+        """ inherited method from RPGCharacter. The log method is called, whenever somehow an action is performed that is related to this character. """
         print(f'_{self.name}_: {msg}')
         await self.player.send(f'_{self.name}_: {msg}')
 
 
-    async def recieve_message(self, author, msg):
-        if not author is self: 
-            await self.character_log(f'You hear _{author.name}_ saying: _"{msg}"_')
-            #await self.player.send(f'{author.name} says: _"{msg}"_')
+    #async def recieveMessage(self, author, msg):
+    #    """ inherited method from RPGCharacter. This method is called whenever a character recieves a message by other characters, the game or annything else."""
+    #    if not author is self: 
+    #        await self.character_log(f'You hear _{author.name}_ saying: _"{msg}"_')
+    #        #await self.player.send(f'{author.name} says: _"{msg}"_')
         
     

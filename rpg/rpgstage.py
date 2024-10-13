@@ -1,11 +1,10 @@
 """  
 # AUTHOR: JMW
 # CREATION DATE: 04.10.2024
-# LAST UPDATE: 11.10.2024
+# LAST UPDATE: 13.10.2024
 The RPGStage class is the base class for all game rooms/levels. Characters and objects are living in stages, gates allow to connect them via traveling.
 """
 
-#from rpg.rpgworld import RPGWorld as RPGWorld
 from rpg.rpgentity import RPGEntity as RPGEntity
 
 class RPGStage(RPGEntity):
@@ -20,21 +19,39 @@ class RPGStage(RPGEntity):
             world.add_stage(self)
 
     
-    def add_object(self, obj):
+    def addRPGStageObject(self, obj):
+        """ Adds a RPGStageObject like object to the stage."""
         self.objects.append(obj)
         obj.stage = self
     
 
-    def add_character(self, character):
-        self.characters.append(character)
-        character.stage = self
+    def removeRPGStageObject(self, obj):
+        """ Removes a RPGStageObject like object from the stage if it is on stage. Will return True in this case, otherwise False"""
+        if obj in self.objects:
+            self.objects.remove(obj)
+            obj.stage = None
+            return True
+        else:
+            return False
     
 
-    def remove_character(self, character):
-        self.characters.remove(character)
-        character.stage = None
+    def addRPGCharacter(self, char):
+        """ Adds a RPGCharacter like object to the stage."""
+        self.characters.append(char)
+        char.stage = self
+    
+
+    def removeRPGCharacter(self, char):
+        """ Removes a RPGCharacter like object from the stage if it is on stage. Will return True in this case, otherwise False"""
+        if char in self.characters:
+            self.characters.remove(char)
+            char.stage = None
+            return True
+        else:
+            return False
 
 
-    async def msg_to_characters(self, author, msg):
+    async def sendMessageToAllCharacters(self, author, msg):
+        """ Sends the specified message to all characters on this stage."""
         for char in self.characters:
-            await char.recieve_message(author, msg)
+            await char.recieveMessage(author, msg)
