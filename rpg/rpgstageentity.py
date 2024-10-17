@@ -14,7 +14,3 @@ class RPGStageEntity(RPGEntity):
         super().__init__(tag, name, description)
         
         self.stage = stage
-
-
-
-    

@@ -5,6 +5,10 @@
 The RPGStageObject class is the base class for all non living objects that are located in a stage that are no RPGGates.
 """
 
+# PATCH REQUIRED!!!!
+
+
+
 from rpg.rpgstageobject import RPGStageObject as RPGStageObject
 from rpg.rpgentity import RPGEntity as RPGameEntity
 from rpg.rpgstage import RPGStage as RPGStage

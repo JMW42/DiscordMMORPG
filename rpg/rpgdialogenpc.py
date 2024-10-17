@@ -30,8 +30,8 @@ class RPGDialogeNPC(RPGCharacter):
             for key in self.dialoge:
                  sim.append(SequenceMatcher(None, str(key), str(msg)).ratio())
             
-
-            if max(sim) > 0.75:
+    	    
+            if max(sim) > 0.85:
                 index_max = max(range(len(sim)), key=sim.__getitem__)
                 
                 dopt = self.dialoge[list(self.dialoge.keys())[index_max]]
@@ -41,8 +41,8 @@ class RPGDialogeNPC(RPGCharacter):
                 # take item
                 if dopt["takeitem"] != None:
                     
-                    if author.hasRPGItemByTag(dopt["takeitem"]):
-                        await author.removeRPGItemFromInventoryByTag(dopt["takeitem"])
+                    if author.inventory.checkForItemByTag(dopt["takeitem"]):
+                        author.inventory.removeItemByTag(dopt["takeitem"])
                     else:
                         check = False
                 
@@ -57,7 +57,7 @@ class RPGDialogeNPC(RPGCharacter):
                 # give item
                 if(dopt["giveitem"] != None):
                     item = loadRPGItem(dopt["giveitem"])
-                    await author.addRPGItemToInventory(item)
+                    author.inventory.addItem(item)
 
 
 from rpg.rpgloader import loadRPGItem as loadRPGItem

@@ -44,14 +44,16 @@ class RPG(commands.Cog):
 
         if not ctx.author.id in ctx.bot.rpgworld.playercharacters:
             
+            # display welcome message
             await ctx.send(self.bot.gameConfig["WELCOMEMSG"])
-            # name:str, description:str, stage:RPGStage, player
+
+            # cherate new player character
             char = pcharacter.RPGPlayerCharacter("pchar_player", str(ctx.author).replace(" ", ""), "a player character", self.bot.rpgworld.spawn_stage, ctx.author)
             
-            #self.bot.rpgworld.spawn_stage.add_character(char)
-            
+            # add player id to world list
             self.bot.rpgworld.playercharacters[ctx.author.id] = char
 
+            # call character and stage command
             await self.cmd_character(ctx)
             await self.cmd_stage(ctx)
 
@@ -59,20 +61,28 @@ class RPG(commands.Cog):
             await ctx.send("you need to be loged out to login!")
     
 
+
     @commands.command(name="character")
     @commands.check(is_loged_in)
     async def cmd_character(self, ctx):
         """ displays character information"""
+
+        # get player character
         char = self.bot.rpgworld.playercharacters[ctx.author.id]
 
+        # create embed and add values
         embed = discord.Embed(title=f"Character: {char.name} - {ctx.author.id}", description="Information about your ingame character")
+
+        # player name
         embed.add_field(name="Name:", value=char.name, inline=True)
+
+        # current stage
         embed.add_field(name="Stage:", value=char.stage.name, inline=True)
 
         # inventory:
-        text = f"Total: {len(char.inventory)} items \n"
-        for i in range(len(char.inventory)):
-            item = char.inventory[i]
+        text = f"Total: {len(char.inventory.getItems())} items \n"
+        for i in range(len(char.inventory.getItems())):
+            item = char.inventory.getItems()[i]
             text += f" - [{i}] {item.name}\n"
         embed.add_field(name="Inventory:", value=text, inline=False)
 
@@ -115,7 +125,7 @@ class RPG(commands.Cog):
         """ allows a character to use a gate in his current stage and travel"""
         char = self.bot.rpgworld.playercharacters[ctx.author.id]
 
-        if num < len(char.stage.connectors):
+        if num < len(char.stage.connectors) and num >= 0:
 
             stage_old = char.stage
             g = stage_old.connectors[num]
@@ -134,7 +144,7 @@ class RPG(commands.Cog):
         if type == "object":
             arr = char.stage.objects
         elif type == "inventory":
-            arr = char.inventory
+            arr = char.inventory.getItems()
         elif type == "connection":
             arr = char.stage.connectors
         elif type == "character":
